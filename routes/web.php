@@ -26,7 +26,6 @@ Route::get('/struktur', [SiteController::class, 'struktur'])->name('struktur');
 // Route Admin - Protected dengan middleware isAdministrator
 Route::middleware(['auth', 'isAdministrator'])->prefix('admin')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('admin.dashboard');
-    
     Route::get('/jenis-hewan', [App\Http\Controllers\admin\JenisHewanController::class, 'index'])->name('admin.jenis_hewan.index');
     Route::get('/kategori', [App\Http\Controllers\admin\KategoriController::class, 'index'])->name('admin.kategori.index');
     Route::get('/kategori-klinis', [App\Http\Controllers\admin\KategoriKlinisController::class, 'index'])->name('admin.kategori_klinis.index');
@@ -40,7 +39,9 @@ Route::middleware(['auth', 'isAdministrator'])->prefix('admin')->group(function 
     Route::get('/pemilik/{id}/edit', [App\Http\Controllers\admin\PemilikController::class, 'edit'])->name('admin.pemilik.edit');
     Route::put('/pemilik/{id}', [App\Http\Controllers\admin\PemilikController::class, 'update'])->name('admin.pemilik.update');
     Route::delete('/pemilik/{id}', [App\Http\Controllers\admin\PemilikController::class, 'destroy'])->name('admin.pemilik.destroy');
-    
+    Route::get('jenis-hewan/create', [App\Http\Controllers\admin\JenisHewanController::class, 'create'])->name('admin.jenis_hewan.create');
+    Route::post('jenis-hewan/store', [App\Http\Controllers\admin\JenisHewanController::class, 'store'])->name('admin.jenis_hewan.store');
+
     // Route Users - CRUD
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
     Route::get('/users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('admin.users.create');

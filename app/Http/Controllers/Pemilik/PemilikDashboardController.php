@@ -12,7 +12,7 @@ class PemilikDashboardController extends Controller
     public function index()
     {
         // Ambil data pemilik dari user yang login
-        $pemilik = PemilikModel::where('iduser', auth()->user()->iduser)->first();
+        $pemilik = PemilikModel::where('iduser', auth()->id())->first();
         
         if (!$pemilik) {
             return view('dashboards.pemilik')->with('message', 'Anda belum terdaftar sebagai pemilik pet.');
@@ -20,9 +20,7 @@ class PemilikDashboardController extends Controller
         
         // Ambil HANYA pet milik user yang login
         $pets = Pet::where('idpemilik', $pemilik->idpemilik)
-            ->with(['rasHewan.jenisHewan', 'rekamMedis' => function($q) {
-                $q->orderBy('created_at', 'desc');
-            }])
+            ->with(['rasHewan.jenisHewan', 'rekamMedis'])
             ->get();
         
         return view('dashboards.pemilik', compact('pets', 'pemilik'));
