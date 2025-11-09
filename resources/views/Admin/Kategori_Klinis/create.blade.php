@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Tambah Kategori - Admin RSHP')
+@section('title', 'Tambah Kategori Klinis - Admin RSHP')
 
 @section('content')
 <div class="container" style="margin-top: 30px;">
     <div class="card">
         <div class="card-header">
-            <h4>Tambah Kategori</h4>
+            <h4>Tambah Kategori Klinis</h4>
         </div>
         <div class="card-body">
             @if (session('error'))
@@ -16,21 +16,21 @@
                 </div>
             @endif
 
-            <form action="{{ route('admin.kategori.store') }}" method="POST">
+            <form action="{{ route('admin.kategori_klinis.store') }}" method="POST">
                 @csrf
                 
                 <div class="mb-3">
-                    <label for="nama_kategori" class="form-label">Nama Kategori <span class="text-danger">*</span></label>
+                    <label for="nama_kategori_klinis" class="form-label">Nama Kategori Klinis <span class="text-danger">*</span></label>
                     <input 
                         type="text" 
-                        class="form-control @error('nama_kategori') is-invalid @enderror" 
-                        id="nama_kategori" 
-                        name="nama_kategori" 
-                        value="{{ old('nama_kategori') }}"
-                        placeholder="Contoh: Pembedahan, Pemeriksaan Lab"
+                        class="form-control @error('nama_kategori_klinis') is-invalid @enderror" 
+                        id="nama_kategori_klinis" 
+                        name="nama_kategori_klinis" 
+                        value="{{ old('nama_kategori_klinis') }}"
+                        placeholder="Contoh: Dermatologi, Kardiologi"
                         required
                     >
-                    @error('nama_kategori')
+                    @error('nama_kategori_klinis')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
@@ -42,7 +42,7 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-save"></i> Simpan
                     </button>
-                    <a href="{{ route('admin.kategori.index') }}" class="btn btn-secondary">
+                    <a href="{{ route('admin.kategori_klinis.index') }}" class="btn btn-secondary">
                         <i class="bi bi-arrow-left"></i> Kembali
                     </a>
                 </div>

@@ -15,13 +15,14 @@ class JenisHewanController extends Controller
 
     public function store(Request $request)
     {
-        // validasi input
+        // Validasi input
         $validatedData = $this->validateJenisHewan($request);
 
-        // simpan data
-        JenisHewan::create($validatedData);
+        // Helper untuk menyimpan data
+        $jenisHewan = $this->createJenisHewan($validatedData);
 
-        return redirect()->route('admin.jenis_hewan.index')->with('success', 'Jenis hewan berhasil ditambahkan.');
+        return redirect()->route('admin.jenis_hewan.index')
+            ->with('success', 'Jenis hewan berhasil ditambahkan.');
     }
     public function index()
     {
@@ -54,18 +55,19 @@ class JenisHewanController extends Controller
          ]);
     }
 
+    // Helper untuk membuat data baru
     protected function createJenisHewan(array $data)
     {
         try {
             return JenisHewan::create([
-                'nama_jenishewan' => trim(ucwords(strtolower($data['nama_jenis_hewan']))),
+                'nama_jenis_hewan' => $this->formatNamaJenisHewan($data['nama_jenis_hewan']),
             ]);
         } catch (\Exception $e) {
-            throw new \Exception('Gagal membuat jenis hewan: ' . $e->getMessage());
+            throw new \Exception('Gagal menyimpan data jenis hewan: ' . $e->getMessage());
         }
     }
 
-    //helper untuk format nama jadi title case
+    // Helper untuk format nama menjadi Title Case
     protected function formatNamaJenisHewan($nama)
     {
         return trim(ucwords(strtolower($nama)));

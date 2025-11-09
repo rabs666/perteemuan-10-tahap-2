@@ -5,12 +5,17 @@
 @section('content')
 
     <div class="mb-3">
-        <form action="{{ route('admin.kategori.index') }}" method="GET" style="display: inline;">
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-plus"></i> Tambah Kategori
-            </button>
-        </form>
+        <a href="{{ route('admin.kategori.create') }}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Tambah Kategori
+        </a>
     </div>
+
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    @endif
 
     <table border="1" cellpadding="8" cellspacing="0">
         <thead>

@@ -6,7 +6,7 @@
     <div style="background:#fff;padding:2rem;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,0.06)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
             <h2 style="color:#2463d6;font-size:1.75rem;margin:0">Data Role</h2>
-            <a href="#" style="background:#2463d6;color:#fff;padding:0.75rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;transition:background 0.2s">
+            <a href="{{ route('admin.roles.create') }}" style="background:#2463d6;color:#fff;padding:0.75rem 1.5rem;border-radius:6px;text-decoration:none;font-weight:600;transition:background 0.2s">
                 + Tambah Role
             </a>
         </div>

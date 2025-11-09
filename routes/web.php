@@ -41,6 +41,22 @@ Route::middleware(['auth', 'isAdministrator'])->prefix('admin')->group(function 
     Route::delete('/pemilik/{id}', [App\Http\Controllers\admin\PemilikController::class, 'destroy'])->name('admin.pemilik.destroy');
     Route::get('jenis-hewan/create', [App\Http\Controllers\admin\JenisHewanController::class, 'create'])->name('admin.jenis_hewan.create');
     Route::post('jenis-hewan/store', [App\Http\Controllers\admin\JenisHewanController::class, 'store'])->name('admin.jenis_hewan.store');
+    
+    // Route Kategori - CRUD
+    Route::get('/kategori/create', [App\Http\Controllers\admin\KategoriController::class, 'create'])->name('admin.kategori.create');
+    Route::post('/kategori', [App\Http\Controllers\admin\KategoriController::class, 'store'])->name('admin.kategori.store');
+    
+    // Route Kategori Klinis - CRUD
+    Route::get('/kategori-klinis/create', [App\Http\Controllers\admin\KategoriKlinisController::class, 'create'])->name('admin.kategori_klinis.create');
+    Route::post('/kategori-klinis', [App\Http\Controllers\admin\KategoriKlinisController::class, 'store'])->name('admin.kategori_klinis.store');
+    
+    // Route Ras Hewan - CRUD
+    Route::get('/ras-hewan/create', [App\Http\Controllers\admin\RasHewanController::class, 'create'])->name('admin.ras_hewan.create');
+    Route::post('/ras-hewan', [App\Http\Controllers\admin\RasHewanController::class, 'store'])->name('admin.ras_hewan.store');
+    
+    // Route Roles - CRUD
+    Route::get('/roles/create', [App\Http\Controllers\admin\RoleController::class, 'create'])->name('admin.roles.create');
+    Route::post('/roles', [App\Http\Controllers\admin\RoleController::class, 'store'])->name('admin.roles.store');
 
     // Route Users - CRUD
     Route::get('/users', [App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin.users.index');
