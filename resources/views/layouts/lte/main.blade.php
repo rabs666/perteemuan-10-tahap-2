@@ -36,6 +36,28 @@
             },
           });
         }
+        
+        // Handle menu treeview toggle
+        document.querySelectorAll('[data-lte-toggle="treeview"] .nav-item > .nav-link').forEach(function(element) {
+          element.addEventListener('click', function(e) {
+            const parentItem = this.closest('.nav-item');
+            const subMenu = parentItem.querySelector('.nav-treeview');
+            
+            if (subMenu) {
+              e.preventDefault();
+              
+              // Toggle menu-open class
+              parentItem.classList.toggle('menu-open');
+              
+              // Toggle submenu visibility
+              if (parentItem.classList.contains('menu-open')) {
+                subMenu.style.display = 'block';
+              } else {
+                subMenu.style.display = 'none';
+              }
+            }
+          });
+        });
       });
     </script>
     <script
